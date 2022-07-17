@@ -109,7 +109,7 @@ def checkout(skus):
 
 
             if "B" in counts.keys() and counts["B"] >= free_B:
-                print("free B in basket")
+                print(f"free B in basket = {counts['B']}")
                 counts["B"] = counts["B"] - free_B 
 
     print(total)
@@ -118,6 +118,6 @@ def checkout(skus):
 
 
 if __name__ == "__main__":
-    checkout("EEB")
+    checkout("BEBEEE")
 
 
