@@ -17,14 +17,11 @@ from math import remainder
 def multi_offer(value, quantity, original, special):
     # if the value (how many there are) isnt above the threshold, just return the original price * value
     if value < quantity:
-        return original * value
-
+        return original * value, 0
 
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
     sub = devisible_times*special
-
-    print(sub, remainder)
         
     return sub, remainder
 
@@ -38,10 +35,6 @@ def bogof_offer(value, original):
     # Must remember to also include any extras (they could buy more than quantity specified in the deal)
     if remainder > 0:
         sub = sub + remainder * original
-
-    print(f"{value} items @ {original} price = {sub}")
-
-
     return sub
 
 # noinspection PyUnusedLocal
@@ -86,8 +79,6 @@ def checkout(skus):
             original_price = 30
             special_price = 45
             special_threshold = 2
-
-
             sub, remainder = multi_offer(units_specified, special_threshold, original_price, special_price)
             total = total + sub
 
@@ -109,6 +100,7 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
 
 
 
