@@ -29,7 +29,23 @@ def multi_offer(value, quantity, original, special):
     return sub
 
 def bogof_offer(value, original):
+
+    # Work out how many times the value (how many there are)  can be divided by 2
     devisible_times, remainder =  divmod(value, 2)
+
+    sub = devisible_times * original
+
+    print(f"{value} items @ {original} price = {sub}")
+
+
+    # Must remember to also include any extras (they could buy more than quantity specified in the deal)
+    if remainder > 0:
+        sub = sub + remainder * original
+
+
+    return sub
+
+
 
 
 
@@ -38,13 +54,12 @@ def bogof_offer(value, original):
 def checkout(skus):
     skus_as_list = list(skus)
     counts = Counter(skus_as_list)
-    print(counts)
 
     total = 0 
 
     for each in counts:
 
-        if each not in ["A","B","C","D"]:
+        if each not in ["A","B","C","D", "E"]:
             return -1
 
         if each == "A":
