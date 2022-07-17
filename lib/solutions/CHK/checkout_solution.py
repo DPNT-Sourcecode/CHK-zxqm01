@@ -55,6 +55,10 @@ def checkout(skus):
         if each == "A":
             remainder = 0
             original_price = 30
+
+            # If no offers have been met
+            if units_specified < 3:
+                total = total + (units_specified*original_price)
             
             # If the more valuable offer is available
             if units_specified > 5:
@@ -74,6 +78,8 @@ def checkout(skus):
             
             if remainder > 0:
                 total = total + (remainder * original_price)
+
+            
 
         if each == "B":
             original_price = 30
@@ -100,9 +106,3 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
-
-
-
-
-
-
