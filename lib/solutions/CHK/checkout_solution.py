@@ -14,14 +14,17 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    skus_as_list = skus.split()
+    skus_as_list = list(skus)
     counts = Counter(skus_as_list)
     print(counts)
-    
+
     for each in counts:
         if each not in ["A","B","C","D"]:
             return -1
 
         if each == "A":
-            
+            pass
+
+if __name__ == "__main__":
+    checkout("ABC")
 
