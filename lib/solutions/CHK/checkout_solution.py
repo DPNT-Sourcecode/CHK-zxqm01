@@ -11,6 +11,7 @@
 """
 
 from collections import Counter
+from math import remainder
 
 def multi_offer(value, quantity, original, special):
 
@@ -21,12 +22,8 @@ def multi_offer(value, quantity, original, special):
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
     sub = devisible_times*special
-
-    # Must remember to also include any extras (they could buy more than quantity specified in the deal)
-    if remainder > 0:
-        sub = sub + remainder * original
         
-    return sub
+    return sub, remainder
 
 def bogof_offer(value, original):
 
@@ -44,10 +41,6 @@ def bogof_offer(value, original):
 
     return sub
 
-
-
-
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -62,10 +55,25 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            total = total + multi_offer(counts[each], 3, 50, 130)
+            oringial_price = 30
+            special_price = 45
+            special_threshold = 2
+            sub, remainder = multi_offer(counts[each],special_threshold, oringial_price, special_price)            
+            total = total + sub
+            
+            if remainder > 0:
+                total = total + (remainder * oringial_price)
 
         if each == "B":
-            total = total + multi_offer(counts[each], 2, 30, 45)
+            oringial_price = 50
+            special_price = 130
+            special_threshold = 3
+            sub, remainder = multi_offer(counts[each],special_threshold, oringial_price, special_price)
+            total = total + sub
+
+            if remainder > 0:
+                total = total + (remainder * oringial_price)
+
 
         if each == "C":
             total = total + (counts[each]*20)
@@ -81,4 +89,5 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
 
