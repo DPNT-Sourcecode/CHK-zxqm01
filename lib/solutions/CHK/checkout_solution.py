@@ -104,7 +104,7 @@ def checkout(skus):
 
         if each == "E":
             total = total + (units_specified*40)
-            free_B = buy_2E_get_B_free(units_specified)
+            free_B = buy_2E_get_B_free(units_specified, 40)
             print(f"{free_B} free Bs available")
 
 
@@ -119,4 +119,5 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("EEB")
+
 
