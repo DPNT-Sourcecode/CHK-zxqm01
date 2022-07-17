@@ -37,10 +37,11 @@ def checkout(skus):
     skus_as_list = list(skus)
     counts = Counter(skus_as_list)
     print(counts)
+    b_deductions = 0
 
     total = 0 
 
-    for each in counts:
+    for each in reverse(counts):
 
         units_specified = counts[each]
 
@@ -88,7 +89,7 @@ def checkout(skus):
             original_price = 30
             special_price = 45
             special_threshold = 2
-            sub, remainder = multi_offer(units_specified, special_threshold, original_price, special_price)
+            sub, remainder = multi_offer(units_specified-b_deductions, special_threshold, original_price, special_price)
             total = total + sub
 
             if remainder > 0:
@@ -111,8 +112,8 @@ def checkout(skus):
             print(f"{free_B} free Bs available")
 
             if "B" in counts.keys() and counts["B"] >= free_B:
-                print(f"free B in basket = {counts['B']}")
-                counts["B"] = counts["B"] - free_B
+                print(f"total B in basket = {counts['B']}")
+                b_deductions = counts["B"] - free_B
 
         print(f"cost so far: {total}")
 
@@ -123,9 +124,4 @@ def checkout(skus):
 
 
 if __name__ == "__main__":
-    checkout("EEB")
-
-
-
-
-
+    checkout("BEBEEE")
