@@ -97,20 +97,24 @@ def checkout(skus):
 
 
         if each == "C":
+            original_price = 20
             total = total + (units_specified*20)
 
         if each == "D":
+            original_price = 15
+
             total = total + (units_specified*15)
 
         if each == "E":
-            total = total + (units_specified*40)
-            free_B = buy_2E_get_B_free(units_specified, 40)
+            original_price = 40
+            total = total + (units_specified*original_price)
+            free_B = buy_2E_get_B_free(units_specified, original_price)
             print(f"{free_B} free Bs available")
-
 
             if "B" in counts.keys() and counts["B"] >= free_B:
                 print(f"free B in basket = {counts['B']}")
                 counts["B"] = counts["B"] - free_B 
+
 
     print(total)
 
@@ -119,5 +123,6 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("BEBEEE")
+
 
 
