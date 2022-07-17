@@ -58,7 +58,7 @@ def checkout(skus):
 
             # If no offers have been met
             if units_specified < 3:
-                total = total + (units_specified*original_price)
+                total = total + (units_specified * original_price)
             
             # If the more valuable offer is available
             if units_specified >= 5:
@@ -69,8 +69,10 @@ def checkout(skus):
 
             # Use the other offer if the more valuable one has been used or there is still enough in the remainder to trigger this one
             if units_specified >= 3 or remainder >= 3:
+
+
                 # Figure out which one it is
-                this = remainder if remainder >= 3 else units_specified 
+                this = remainder if remainder > 0 else units_specified
                 special_price = 130
                 special_threshold = 3
                 sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
@@ -108,3 +110,4 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAAAA")
+
