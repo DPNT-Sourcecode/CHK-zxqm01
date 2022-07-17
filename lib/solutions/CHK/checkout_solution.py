@@ -54,7 +54,7 @@ def checkout(skus):
 
         if each == "A":
             remainder = 0
-            original_price = 30
+            original_price = 50
 
             # If no offers have been met
             if units_specified < 3:
