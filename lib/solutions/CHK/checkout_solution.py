@@ -40,7 +40,7 @@ def checkout(skus):
 
     total = 0 
 
-    for each in reversed(counts):
+    for each in counts:
 
         units_specified = counts[each]
 
@@ -123,7 +123,7 @@ def checkout(skus):
 
 
 if __name__ == "__main__":
-    checkout("BEBEEE")
+    checkout("EEB")
 
 
 
