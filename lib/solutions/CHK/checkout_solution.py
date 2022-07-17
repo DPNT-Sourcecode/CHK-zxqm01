@@ -29,9 +29,7 @@ def buy_2E_get_B_free(value, original):
 
     # Work out how many times the value (how many there are)  can be divided by 2
     devisible_times, remainder =  divmod(value, 2)
-
-    free_Bs = devisible_times * original
-    return free_Bs
+    return devisible_times
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -106,9 +104,12 @@ def checkout(skus):
 
         if each == "E":
             total = total + (units_specified*40)
-            free_B = buy_2E_get_B_free(units_specified, 40)
+            free_B = buy_2E_get_B_free(units_specified)
+            print(f"{free_B} free Bs available")
+
 
             if "B" in counts.keys() and counts["B"] >= free_B:
+                print("free B in basket")
                 counts["B"] = counts["B"] - free_B 
 
     print(total)
@@ -118,3 +119,4 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("EEB")
+
