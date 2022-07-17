@@ -25,17 +25,13 @@ def multi_offer(value, quantity, original, special):
         
     return sub, remainder
 
-def bogof_offer(value, original):
+def buy_2E_get_B_free(value, original):
 
     # Work out how many times the value (how many there are)  can be divided by 2
     devisible_times, remainder =  divmod(value, 2)
 
-    sub = devisible_times * original
-
-    # Must remember to also include any extras (they could buy more than quantity specified in the deal)
-    if remainder > 0:
-        sub = sub + remainder * original
-    return sub
+    free_Bs = devisible_times * original
+    return free_Bs
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -68,16 +64,17 @@ def checkout(skus):
                 total = total + sub
 
             # Else use the other offer
-
-            elif units_specified >=3 and units_specified <5:
+            elif units_specified >=3:
                 special_price = 130
                 special_threshold = 3
                 sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
                 total = total + sub
 
+            print(remainder)
+
             # Check if the offer is availabe on the remainder
     
-            if remainder > 0 and remainder >= 3:
+            if remainder >= 3:
                 special_price = 130
                 special_threshold = 3
                 sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
@@ -107,7 +104,8 @@ def checkout(skus):
             total = total + (units_specified*15)
 
         if each == "E":
-            total = total + bogof_offer(units_specified, 40)
+            total = total + (units_specified*40)
+            free_B = buy_2E_get_B_free(units_specified, 40)
 
     print(total)
 
@@ -115,6 +113,6 @@ def checkout(skus):
 
 
 if __name__ == "__main__":
-    checkout("AAAAA")
+    checkout("AAAAAAAA")
 
 
