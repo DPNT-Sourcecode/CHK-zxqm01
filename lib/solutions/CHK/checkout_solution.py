@@ -11,6 +11,7 @@
 """
 
 from collections import Counter
+from itertools import count
 from math import remainder
 
 def multi_offer(value, quantity, original, special):
@@ -55,19 +56,32 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            oringial_price = 30
-            special_price = 45
-            special_threshold = 2
-            sub, remainder = multi_offer(counts[each],special_threshold, oringial_price, special_price)            
-            total = total + sub
+            remainder = 0
+            original_price = 30
+            
+            # If the more valuable offer is available
+            if count[each] > 5:
+                special_price = 200
+                special_threshold = 5
+                sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
+                total = total + sub
+
+            # Use the other offer if the more valuable one has been used or there is still enough in the remainder to trigger this one
+            if count[each] > 3 or remainder > 3:
+                # Figure out which one it is
+                this = count[each] if count[each] > 3 else remainder
+                special_price = 130
+                special_threshold = 3
+                sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
+                total = total + sub
             
             if remainder > 0:
-                total = total + (remainder * oringial_price)
+                total = total + (remainder * original_price)
 
         if each == "B":
-            oringial_price = 50
-            special_price = 130
-            special_threshold = 3
+            original_price = 30
+            special_price = 45
+            special_threshold = 2
             sub, remainder = multi_offer(counts[each],special_threshold, oringial_price, special_price)
             total = total + sub
 
@@ -89,5 +103,6 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
 
 
