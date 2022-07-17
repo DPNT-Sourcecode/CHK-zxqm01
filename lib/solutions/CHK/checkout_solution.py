@@ -35,12 +35,11 @@ def bogof_offer(value, original):
 
     sub = devisible_times * original
 
-    print(f"{value} items @ {original} price = {sub}")
-
-
     # Must remember to also include any extras (they could buy more than quantity specified in the deal)
     if remainder > 0:
         sub = sub + remainder * original
+
+    print(f"{value} items @ {original} price = {sub}")
 
 
     return sub
@@ -69,16 +68,17 @@ def checkout(skus):
             total = total + multi_offer(counts[each], 2, 30, 45)
 
         if each == "C":
-            total = total + (counts["C"]*20)
+            total = total + (counts[each]*20)
 
         if each == "D":
-            total = total + (counts["D"]*15)
+            total = total + (counts[each]*15)
 
         if each == "E":
-            total = total + bogof_offer()
+            total = total + bogof_offer(counts[each], 40)
 
     return total
 
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
