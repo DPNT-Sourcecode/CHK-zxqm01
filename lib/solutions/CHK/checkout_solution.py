@@ -11,6 +11,11 @@
 
 from collections import Counter
 
+def multi_getter(value, quantity, original, special):
+    pass
+
+
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -25,10 +30,16 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            total = total+counts["A"]*50
+            if counts(each) > 3:
+                total = multi_getter(counts(each), 3, 50, 130)
+            else:
+                total = total+counts["A"]*50
 
         if each == "B":
-            total = total+counts["B"]*30
+            if counts(each) > 2:
+                total = multi_getter(counts(each), 2, 30, 45)
+            else:
+                total = total+counts["B"]*50
 
         if each == "C":
             total = total+counts["C"]*20
@@ -42,4 +53,5 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCD")
+
 
