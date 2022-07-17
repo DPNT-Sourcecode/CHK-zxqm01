@@ -12,7 +12,7 @@
 
 from collections import Counter
 
-def multi_getter(value, quantity, original, special):
+def multi_offer(value, quantity, original, special):
 
     # if the value (how many there are) isnt above the threshold, just return the original price * value
     if value < quantity:
@@ -27,6 +27,9 @@ def multi_getter(value, quantity, original, special):
         sub = sub + remainder * original
         
     return sub
+
+def bogof_offer(value, original):
+    devisible_times, remainder =  divmod(value, 2)
 
 
 
@@ -45,22 +48,22 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            total = total + multi_getter(counts[each], 3, 50, 130)
+            total = total + multi_offer(counts[each], 3, 50, 130)
 
         if each == "B":
-            total = total + multi_getter(counts[each], 2, 30, 45)
+            total = total + multi_offer(counts[each], 2, 30, 45)
 
         if each == "C":
             total = total + (counts["C"]*20)
 
         if each == "D":
             total = total + (counts["D"]*15)
+
+        if each == "E":
+            total = total + bogof_offer()
+
     return total
 
 
 if __name__ == "__main__":
-    checkout("AAABCD")
-
-
-
-
+    checkout("AAABCDEEE")
