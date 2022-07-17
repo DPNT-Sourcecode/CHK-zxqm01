@@ -12,15 +12,20 @@
 from collections import Counter
 
 def multi_getter(value, quantity, original, special):
+
+    # if the value (how many there are) isnt above the threshold, just return the original price * value
     if value < quantity:
-        return original
+        return original * value
 
+    # If the value is above the threshold, times the special price * how many time its divisible
+    devisible_times, remainder =  divmod(value, quantity)
+    sub = devisible_times*special
 
-    sub = 0 
-    
-    value, remainder =  divmod(value, quantity)
-    print(value)
-    print(remainder)
+    # Must remember to also include any extras (they could buy more than quantity specified in the deal)
+    if remainder > 0:
+        sub = sub + remainder * original
+        
+    return sub
 
 
 
@@ -49,12 +54,11 @@ def checkout(skus):
 
         if each == "D":
             total = total + (counts["D"]*15)
-
-    print(total)
     return total
 
 
 if __name__ == "__main__":
     checkout("AAABCD")
+
 
 
