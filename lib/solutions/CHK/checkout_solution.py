@@ -18,13 +18,27 @@ def checkout(skus):
     counts = Counter(skus_as_list)
     print(counts)
 
+    total = 0 
+
     for each in counts:
         if each not in ["A","B","C","D"]:
             return -1
 
         if each == "A":
-            pass
+            total = counts["A"]*50
+
+        if each == "B":
+            total = counts["B"]*50
+
+        if each == "C":
+            total = counts["C"]*50
+
+        if each == "D":
+            total = counts["D"]*50
+
+    return total
+
 
 if __name__ == "__main__":
-    checkout("ABC")
+    checkout("AAABC")
 
