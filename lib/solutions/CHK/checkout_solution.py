@@ -41,7 +41,7 @@ def checkout(skus):
 
     total = 0 
 
-    for each in reverse(counts):
+    for each in reversed(counts):
 
         units_specified = counts[each]
 
