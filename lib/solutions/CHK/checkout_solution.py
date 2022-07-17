@@ -25,20 +25,21 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            total = counts["A"]*50
+            total = total+counts["A"]*50
 
         if each == "B":
-            total = counts["B"]*50
+            total = total+counts["B"]*30
 
         if each == "C":
-            total = counts["C"]*50
+            total = total+counts["C"]*20
 
         if each == "D":
-            total = counts["D"]*50
+            total = total+counts["D"]*15
 
+    print(total)
     return total
 
 
 if __name__ == "__main__":
-    checkout("AAABC")
+    checkout("AAABCD")
 
