@@ -12,7 +12,11 @@
 from collections import Counter
 
 def multi_getter(value, quantity, original, special):
-    pass
+    sub = 0 
+    
+    value, remainder =  divmod(value, quantity)
+    print(value)
+    print(remainder)
 
 
 
@@ -30,16 +34,14 @@ def checkout(skus):
         if each not in ["A","B","C","D"]:
             return -1
 
-        print(each)
-
         if each == "A":
-            if counts[each] > 3:
+            if counts[each] >= 3:
                 total = multi_getter(counts[each], 3, 50, 130)
             else:
                 total = total+counts["A"]*50
 
         if each == "B":
-            if counts[each] > 2:
+            if counts[each] >= 2:
                 total = multi_getter(counts[each], 2, 30, 45)
             else:
                 total = total+counts["B"]*50
