@@ -76,15 +76,13 @@ def checkout(skus):
                 sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
                 total = total + sub
 
-            print(total)
+            print(f"total so far: {total}, remainder = {remainder}")
 
-
-            # Check if the offer is availabe on the remainder
-    
+            # Check if the offer is availabe on the remainder    
             if remainder >= 3:
                 special_price = 130
                 special_threshold = 3
-                sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
+                sub, remainder = multi_offer(remainder,special_threshold, original_price, special_price)
                 total = total + sub
 
             # Finally add any out of offer items            
@@ -121,7 +119,3 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAAAAAAA")
-
-
-
-
