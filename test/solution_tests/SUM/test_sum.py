@@ -8,5 +8,3 @@ class TestSum():
         assert sum_solution.compute("dog", 5) == False
 
 
-
-

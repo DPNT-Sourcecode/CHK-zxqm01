@@ -6,5 +6,3 @@ def compute(x, y):
         return False
     total = x + y
     return total
-
-
