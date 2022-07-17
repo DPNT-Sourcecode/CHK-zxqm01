@@ -124,4 +124,6 @@ def checkout(skus):
 
 
 if __name__ == "__main__":
-    checkout("BEBEEE")
+    checkout("ABCDE")
+
+    # Very sorry but its past midnight and i have work at 6. therefor i cannot complete the rest of the test
