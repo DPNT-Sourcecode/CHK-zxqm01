@@ -22,9 +22,6 @@ def multi_offer(value, quantity, original, special):
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
     sub = devisible_times*special
-
-    print(sub)
-    print(remainder)
         
     return sub, remainder
 
@@ -41,6 +38,7 @@ def buy_2E_get_B_free(value, original):
 def checkout(skus):
     skus_as_list = list(skus)
     counts = Counter(skus_as_list)
+    print(counts)
 
     total = 0 
 
@@ -48,9 +46,8 @@ def checkout(skus):
 
         units_specified = counts[each]
 
-        print(f"{each} -> {units_specified}")
 
-        if each not in ["A","B","C","D", "E"]:
+        if each not in ["A","B","C","D","E"]:
             return -1
 
         if each == "A":
@@ -76,7 +73,6 @@ def checkout(skus):
                 sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
                 total = total + sub
 
-            print(f"total so far: {total}, remainder = {remainder}")
 
             # Check if the offer is availabe on the remainder    
             if remainder >= 3:
@@ -112,10 +108,8 @@ def checkout(skus):
             total = total + (units_specified*40)
             free_B = buy_2E_get_B_free(units_specified, 40)
 
-    print(total)
-
     return total
 
 
 if __name__ == "__main__":
-    checkout("AAAAAAAA")
+    checkout("EEB")
