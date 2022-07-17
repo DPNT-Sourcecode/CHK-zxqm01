@@ -12,6 +12,10 @@
 from collections import Counter
 
 def multi_getter(value, quantity, original, special):
+    if value < quantity:
+        return original
+
+
     sub = 0 
     
     value, remainder =  divmod(value, quantity)
@@ -35,16 +39,10 @@ def checkout(skus):
             return -1
 
         if each == "A":
-            if counts[each] >= 3:
-                total = multi_getter(counts[each], 3, 50, 130)
-            else:
-                total = total + (counts[each] * 50)
+            total = total + multi_getter(counts[each], 3, 50, 130)
 
         if each == "B":
-            if counts[each] >= 2:
-                total = multi_getter(counts[each], 2, 30, 45)
-            else:
-                total = total + (counts[each] * 30)
+            total = total + multi_getter(counts[each], 2, 30, 45)
 
         if each == "C":
             total = total + (counts["C"]*20)
@@ -58,4 +56,5 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCD")
+
 
