@@ -33,14 +33,14 @@ def checkout(skus):
         print(each)
 
         if each == "A":
-            if counts(each) > 3:
-                total = multi_getter(counts(each), 3, 50, 130)
+            if counts[each] > 3:
+                total = multi_getter(counts[each], 3, 50, 130)
             else:
                 total = total+counts["A"]*50
 
         if each == "B":
-            if counts(each) > 2:
-                total = multi_getter(counts(each), 2, 30, 45)
+            if counts[each] > 2:
+                total = multi_getter(counts[each], 2, 30, 45)
             else:
                 total = total+counts["B"]*50
 
@@ -56,6 +56,3 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCD")
-
-
-
