@@ -26,8 +26,11 @@ def checkout(skus):
     total = 0 
 
     for each in counts:
+
         if each not in ["A","B","C","D"]:
             return -1
+
+        print(each)
 
         if each == "A":
             if counts(each) > 3:
@@ -53,5 +56,6 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCD")
+
 
 
