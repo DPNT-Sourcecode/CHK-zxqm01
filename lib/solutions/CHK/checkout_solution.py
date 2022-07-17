@@ -108,6 +108,11 @@ def checkout(skus):
             total = total + (units_specified*40)
             free_B = buy_2E_get_B_free(units_specified, 40)
 
+            if "B" in counts.keys() and counts["B"] >= free_B:
+                counts["B"] = counts["B"] - free_B 
+
+    print(total)
+
     return total
 
 
