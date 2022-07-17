@@ -23,6 +23,8 @@ def multi_offer(value, quantity, original, special):
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
     sub = devisible_times*special
+
+    print(sub, remainder)
         
     return sub, remainder
 
@@ -60,16 +62,16 @@ def checkout(skus):
             original_price = 30
             
             # If the more valuable offer is available
-            if count[each] > 5:
+            if counts[each] > 5:
                 special_price = 200
                 special_threshold = 5
                 sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
                 total = total + sub
 
             # Use the other offer if the more valuable one has been used or there is still enough in the remainder to trigger this one
-            if count[each] > 3 or remainder > 3:
+            if counts[each] > 3 or remainder > 3:
                 # Figure out which one it is
-                this = count[each] if count[each] > 3 else remainder
+                this = counts[each] if counts[each] > 3 else remainder
                 special_price = 130
                 special_threshold = 3
                 sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
@@ -82,11 +84,11 @@ def checkout(skus):
             original_price = 30
             special_price = 45
             special_threshold = 2
-            sub, remainder = multi_offer(counts[each],special_threshold, oringial_price, special_price)
+            sub, remainder = multi_offer(counts[each], special_threshold, original_price, special_price)
             total = total + sub
 
             if remainder > 0:
-                total = total + (remainder * oringial_price)
+                total = total + (remainder * original_price)
 
 
         if each == "C":
@@ -103,6 +105,7 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
 
 
 
