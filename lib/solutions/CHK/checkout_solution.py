@@ -22,6 +22,9 @@ def multi_offer(value, quantity, original, special):
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
     sub = devisible_times*special
+
+    print(sub)
+    print(remainder)
         
     return sub, remainder
 
@@ -45,10 +48,13 @@ def checkout(skus):
 
         units_specified = counts[each]
 
+        print(f"{each} -> {units_specified}")
+
         if each not in ["A","B","C","D", "E"]:
             return -1
 
         if each == "A":
+            
             remainder = 0
             original_price = 50
 
@@ -114,5 +120,6 @@ def checkout(skus):
 
 if __name__ == "__main__":
     checkout("AAAAAAAA")
+
 
 
