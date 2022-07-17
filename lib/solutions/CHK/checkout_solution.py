@@ -9,9 +9,19 @@
 +------+-------+----------------+
 """
 
+from collections import Counter
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    if skus not in ["A","B","C","D"]:
-        return -1
+    skus_as_list = skus.split()
+    counts = Counter(skus_as_list)
+    print(counts)
+    
+    for each in counts:
+        if each not in ["A","B","C","D"]:
+            return -1
+
+        if each == "A":
+            
 
