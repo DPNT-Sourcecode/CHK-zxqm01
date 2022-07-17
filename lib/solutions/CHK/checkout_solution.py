@@ -15,10 +15,10 @@ from itertools import count
 from math import remainder
 
 def multi_offer(value, quantity, original, special):
-
     # if the value (how many there are) isnt above the threshold, just return the original price * value
     if value < quantity:
         return original * value
+
 
     # If the value is above the threshold, times the special price * how many time its divisible
     devisible_times, remainder =  divmod(value, quantity)
@@ -54,6 +54,8 @@ def checkout(skus):
 
     for each in counts:
 
+        units_specified = counts[each]
+
         if each not in ["A","B","C","D", "E"]:
             return -1
 
@@ -62,19 +64,19 @@ def checkout(skus):
             original_price = 30
             
             # If the more valuable offer is available
-            if counts[each] > 5:
+            if units_specified > 5:
                 special_price = 200
                 special_threshold = 5
-                sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
+                sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
                 total = total + sub
 
             # Use the other offer if the more valuable one has been used or there is still enough in the remainder to trigger this one
-            if counts[each] > 3 or remainder > 3:
+            if units_specified >= 3 or remainder >= 3:
                 # Figure out which one it is
-                this = counts[each] if counts[each] > 3 else remainder
+                this = units_specified if units_specified >= 3 else remainder
                 special_price = 130
                 special_threshold = 3
-                sub, remainder = multi_offer(counts[each],special_threshold, original_price, special_price)
+                sub, remainder = multi_offer(units_specified,special_threshold, original_price, special_price)
                 total = total + sub
             
             if remainder > 0:
@@ -84,7 +86,9 @@ def checkout(skus):
             original_price = 30
             special_price = 45
             special_threshold = 2
-            sub, remainder = multi_offer(counts[each], special_threshold, original_price, special_price)
+
+
+            sub, remainder = multi_offer(units_specified, special_threshold, original_price, special_price)
             total = total + sub
 
             if remainder > 0:
@@ -92,19 +96,20 @@ def checkout(skus):
 
 
         if each == "C":
-            total = total + (counts[each]*20)
+            total = total + (units_specified*20)
 
         if each == "D":
-            total = total + (counts[each]*15)
+            total = total + (units_specified*15)
 
         if each == "E":
-            total = total + bogof_offer(counts[each], 40)
+            total = total + bogof_offer(units_specified, 40)
 
     return total
 
 
 if __name__ == "__main__":
     checkout("AAABCDEEE")
+
 
 
 
